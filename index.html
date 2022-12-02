@@ -98,11 +98,89 @@
       output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
     });
 
-    let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
+    let buttons = Array.from(document.querySelectorAll('#error-btns > button'));
+    buttons[0].addEventListener('click', e=>{
+      console.log("hello world");
+    });
+    buttons[1].addEventListener('click', e=>{
+      console.error("error world");
+    });
+    buttons[2].addEventListener('click', e=>{
+      console.count("count world");
+      console.count("count world");
+      console.log("reset count");
+      console.countReset("count world");
+      console.count("count world");
+    });
+    buttons[3].addEventListener('click', e=>{
+      console.warn("warn world");
+    });
+    buttons[4].addEventListener('click', e=>{
+      //from MDN
+      const errorMsg = "the # is not even";
+      for (let number = 2; number <= 5; number++) {
+        console.log(`the # is ${number}`);
+        console.assert(number % 2 === 0, '%o', { number, errorMsg });
+      } 
+    });
+    buttons[5].addEventListener('click', e=>{
+      console.clear();
+    });
+    buttons[6].addEventListener('click', e=>{
+      console.dir({name:"Daniel", major:"CE"});
+    });
+    buttons[7].addEventListener('click', e=>{
+      console.dirxml({name:"Daniel", major:"CE"});
+    });
+    buttons[8].addEventListener('click', e=>{
+      console.group();
+    });
+    buttons[9].addEventListener('click', e=>{
+      console.groupEnd();
+    });
+    buttons[10].addEventListener('click', e=>{
+      console.table({name:"Daniel", major:"CE"});
+    });
+    buttons[11].addEventListener('click', e=>{
+      console.time();
+    });
+    buttons[12].addEventListener('click', e=>{
+      console.timeEnd();
+    });
+    buttons[13].addEventListener('click', e=>{
+      console.trace();
+    });
+    buttons[14].addEventListener('click', e=>{
+      throw new Error("error throw");
+    });
+    try{
+      buttons[15].addEventListener('click', e=>{
+        console.log("dd");
+      });
+    }catch (err){
+      console.dir(err);
+    }
 
-    // Start your code here
-    // You may move this JS to another file if you wish
+    class customError extends Error{
+      constructor(message) {
+        super(message);
+        this.name = "customError";
+      }
+    }
+  
+    throw new customError("not working, custom error");
+    
+
+
+    
   </script>
+    <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+    <script>
+      window.TrackJS && TrackJS.install({ 
+        token: "5c1f92a38b04432997d2d3ebdf648ed7"
+        // for more configuration options, see https://docs.trackjs.com
+      });
+    </script>
 </body>
 
 </html>
